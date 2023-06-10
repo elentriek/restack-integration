@@ -1,0 +1,12 @@
+{
+    "domain": "restack",
+    "name": "ReStack",
+    "codeowners": ["@florisheyvaert", "@bramvandenbossche"],
+    "config_flow": true,
+    "dependencies": [],
+    "documentation": "https://www.to.do",
+    "integration_type": "service",
+    "iot_class": "cloud_polling",
+    "requirements": [],
+    "version": "0.0.1"
+}

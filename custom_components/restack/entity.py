@@ -32,17 +32,10 @@ class ReStackEntity(CoordinatorEntity[ReStackDataUpdateCoordinator]):
             entry_type=DeviceEntryType.SERVICE,
             model=self.stack.type,
         )
-        # self._attr_extra_state_attributes = {
-        #     "monitor_cert_days_remaining": self.monitor.monitor_cert_days_remaining,
-        #     "monitor_cert_is_valid": self.monitor.monitor_cert_is_valid,
-        #     "monitor_hostname": self.monitor.monitor_hostname,
-        #     "monitor_name": self.monitor.monitor_name,
-        #     "monitor_port": self.monitor.monitor_port,
-        #     "monitor_response_time": self.monitor.monitor_response_time,
-        #     "monitor_status": self.monitor.monitor_status,
-        #     "monitor_type": self.monitor.monitor_type,
-        #     "monitor_url": self.monitor.monitor_url,
-        # }
+        self._attr_extra_state_attributes = {
+            "job_started": self.stack.jobs[0].started,
+            "job_ended": self.stack.jobs[0].ended,
+        }
         self._attr_unique_id = f"restack_{self.stack.name}"
         self.api = coordinator.api
 
@@ -70,3 +63,7 @@ class ReStackEntity(CoordinatorEntity[ReStackDataUpdateCoordinator]):
             return bool(self.stack.jobs[0].success)
         else:
             return False
+        
+    @property
+    def stack_job_attributes(self):
+        return self._attr_extra_state_attributes

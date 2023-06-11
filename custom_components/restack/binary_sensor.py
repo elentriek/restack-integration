@@ -58,3 +58,7 @@ class ReStackBinarySensor(ReStackEntity, BinarySensorEntity):
     def is_on(self) -> bool:
         """Return True if the entity is on."""
         return self.stack_available
+    
+    @property
+    def extra_state_attributes(self):
+        return self.stack_job_attributes

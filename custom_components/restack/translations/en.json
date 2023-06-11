@@ -11,7 +11,7 @@
         },
         "step": {
             "user": {
-                "description": "Enter connection information for your Uptime Kuma instance:",
+                "description": "Enter connection information for your ReStack instance:",
                 "data": {
                     "host": "Host/URL",
                     "password": "Password",

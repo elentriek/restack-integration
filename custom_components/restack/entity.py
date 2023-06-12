@@ -33,8 +33,8 @@ class ReStackEntity(CoordinatorEntity[ReStackDataUpdateCoordinator]):
             model=self.stack.type,
         )
         self._attr_extra_state_attributes = {
-            "job_started": self.stack.jobs[0].started,
-            "job_ended": self.stack.jobs[0].ended,
+            "job_started": self.stack.jobs[0].started or "",
+            "job_ended": self.stack.jobs[0].ended or "",
         }
         self._attr_unique_id = f"restack_{self.stack.name}"
         self.api = coordinator.api
@@ -59,7 +59,7 @@ class ReStackEntity(CoordinatorEntity[ReStackDataUpdateCoordinator]):
     @property
     def stack_available(self) -> bool:
         """Returtn if the stack is available."""
-        if self.stack.jobs is not None:
+        if self.stack.jobs is not None and isinstance(self.stack.jobs, list):
             return bool(self.stack.jobs[0].success)
         else:
             return False

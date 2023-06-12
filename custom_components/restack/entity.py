@@ -33,8 +33,8 @@ class ReStackEntity(CoordinatorEntity[ReStackDataUpdateCoordinator]):
             model=self.stack.type,
         )
         self._attr_extra_state_attributes = {
-            "job_started": self.stack.jobs[0].started or "",
-            "job_ended": self.stack.jobs[0].ended or "",
+            "job_started": self.stack.jobs[0].started if isinstance(self.stack.jobs, list) and len(self.stack.jobs) >= 1 else '',
+            "job_ended": self.stack.jobs[0].ended if isinstance(self.stack.jobs, list) and len(self.stack.jobs) >= 1 else '',
         }
         self._attr_unique_id = f"restack_{self.stack.name}"
         self.api = coordinator.api

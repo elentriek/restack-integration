@@ -59,7 +59,7 @@ class ReStackEntity(CoordinatorEntity[ReStackDataUpdateCoordinator]):
     @property
     def stack_available(self) -> bool:
         """Returtn if the stack is available."""
-        if self.stack.jobs is not None and isinstance(self.stack.jobs, list):
+        if isinstance(self.stack.jobs, list) and len(self.stack.jobs) >= 1:
             return bool(self.stack.jobs[0].success)
         else:
             return False

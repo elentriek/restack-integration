@@ -7,6 +7,6 @@
     "documentation": "https://www.to.do",
     "integration_type": "service",
     "iot_class": "cloud_polling",
-    "requirements": ["pyrestack==0.0.25"],
+    "requirements": ["pyrestack==0.0.27"],
     "version": "0.0.2"
 }
